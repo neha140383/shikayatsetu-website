@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ShikayatSetu</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{
+  --navy:#1B1F3B; --saffron:#FF9933; --red:#C1272D;
+  --bg:#FAF9F6; --surface:#F0F0F4; --line:#DCDCE6;
+  --text:#1F2430; --muted:#5B6070; --onnavy:#FFFFFF;
+  --head:#1B1F3B; --link:#8A3E00;
+  --shadow:0 10px 30px rgba(27,31,59,.10);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --navy:#111428; --bg:#14172A; --surface:#1D2138; --line:#2E3352;
+    --text:#ECEBF3; --muted:#A9ADC4; --head:#F4F1EA; --link:#FFB866;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --navy:#111428; --bg:#14172A; --surface:#1D2138; --line:#2E3352;
+  --text:#ECEBF3; --muted:#A9ADC4; --head:#F4F1EA; --link:#FFB866;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Source Sans 3","Segoe UI",Arial,sans-serif;font-size:18px;line-height:1.6}
+h1,h2,h3{font-family:Poppins,"Segoe UI",Arial,sans-serif;color:var(--head);line-height:1.2;text-wrap:balance;margin:0 0 .5em}
+h1{font-size:clamp(32px,4.5vw,46px);font-weight:700}
+h2{font-size:clamp(24px,3vw,30px);font-weight:600;margin-top:1.4em}
+h3{font-size:20px;font-weight:500;color:var(--red)}
+p{margin:0 0 1em;max-width:68ch}
+a{color:var(--link)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+/* header */
+header{background:var(--navy);color:var(--onnavy);position:sticky;top:0;z-index:10;box-shadow:0 2px 10px rgba(0,0,0,.2)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-family:Poppins,sans-serif;font-weight:700;font-size:20px;color:#fff;text-decoration:none;letter-spacing:.2px}
+.brand .mark{width:30px;height:30px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:4px}
+nav a{display:block;padding:8px 14px;border-radius:6px;color:#fff;text-decoration:none;font-family:Poppins,sans-serif;font-weight:500;font-size:15px}
+nav a:hover,nav a:focus-visible{background:rgba(255,255,255,.12);outline:none}
+nav a[aria-current="page"]{background:var(--saffron);color:#1B1F3B}
+.burger{display:none;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:6px;padding:6px 10px;font:inherit;cursor:pointer}
+@media (max-width:782px){
+  .burger{display:block}
+  nav{position:absolute;left:0;right:0;top:66px;background:var(--navy);display:none;padding:8px 16px 16px;border-top:1px solid rgba(255,255,255,.15)}
+  nav.open{display:block}
+  nav ul{flex-direction:column}
+}
+/* pages */
+.page{display:none;animation:fade .3s ease}
+.page.active{display:block}
+@keyframes fade{from{opacity:.5}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.page{animation:none}}
+section{padding:56px 0}
+@media (max-width:782px){section{padding:40px 0}}
+.hero{background:var(--navy);color:#fff;padding:64px 0}
+.hero h1{color:#fff}
+.hero p{color:#E4E5F0;font-size:20px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+@media (max-width:782px){.hero .wrap{grid-template-columns:1fr}.hero{padding:44px 0}}
+.eyebrow{font-family:Poppins,sans-serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--saffron);font-weight:600;margin-bottom:12px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+.btn{display:inline-block;padding:12px 22px;border-radius:8px;font-family:Poppins,sans-serif;font-weight:500;font-size:16px;text-decoration:none;border:2px solid transparent;cursor:pointer}
+.btn.primary{background:var(--saffron);color:#1B1F3B}
+.btn.ghost{border-color:#fff;color:#fff}
+.btn.navy{background:var(--navy);color:#fff}
+.btn:hover{filter:brightness(1.07)}
+.btn:focus-visible{outline:3px solid var(--saffron);outline-offset:2px}
+.next{display:flex;justify-content:flex-end;padding:8px 0 56px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media (max-width:782px){.grid3{grid-template-columns:1fr}}
+.feature{background:var(--surface);border-radius:12px;padding:26px 24px}
+.feature .ico{width:44px;height:44px;margin-bottom:12px}
+.feature h3{color:var(--head);margin-bottom:6px}
+.feature p{margin:0;font-size:17px}
+.stats{background:var(--saffron);color:#1B1F3B;padding:40px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+@media (max-width:782px){.stats .wrap{grid-template-columns:1fr}}
+.stat b{display:block;font-family:Poppins,sans-serif;font-size:44px;line-height:1;font-weight:700;font-variant-numeric:tabular-nums}
+.stat span{display:block;margin-top:8px;font-size:16px;max-width:30ch}
+.stat small{display:block;margin-top:6px;font-size:13px;opacity:.75}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+@media (max-width:782px){.two{grid-template-columns:1fr}}
+.video{aspect-ratio:16/9;background:#000;border-radius:12px;display:grid;place-items:center;color:#fff;text-align:center;padding:20px;text-decoration:none;box-shadow:var(--shadow)}
+.video .play{width:64px;height:64px;border-radius:50%;background:var(--saffron);display:grid;place-items:center;margin:0 auto 12px}
+.video small{opacity:.8;font-size:14px}
+.photo{border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.photo svg{display:block;width:100%;height:auto}
+.about{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
+@media (max-width:782px){.about{grid-template-columns:1fr}}
+.objs{display:grid;gap:16px;margin:16px 0}
+.obj{background:var(--surface);border-left:6px solid var(--saffron);padding:18px 22px;border-radius:0 10px 10px 0}
+.obj b{font-family:Poppins,sans-serif;color:var(--head)}
+.obj p{margin:4px 0 0;font-size:17px}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:16px;margin:12px 0 24px}
+th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-family:Poppins,sans-serif;font-weight:500;font-size:15px}
+td{padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.scroll{overflow-x:auto}
+.ladder{margin:20px 0 28px;overflow-x:auto}
+.ladder svg{width:100%;min-width:640px;height:auto;display:block}
+.timeline{list-style:none;padding:0;margin:20px 0;border-left:3px solid var(--saffron)}
+.timeline li{padding:0 0 22px 24px;position:relative}
+.timeline li::before{content:"";position:absolute;left:-10px;top:8px;width:16px;height:16px;border-radius:50%;background:var(--navy);border:3px solid var(--saffron)}
+.timeline b{font-family:Poppins,sans-serif;color:var(--head);display:block}
+.timeline .rung{font-size:14px;color:var(--red);font-weight:600;font-family:Poppins,sans-serif}
+.timeline p{margin:4px 0 0;font-size:17px}
+blockquote{margin:20px 0;padding:6px 0 6px 20px;border-left:5px solid var(--saffron);font-style:italic;color:var(--muted);max-width:60ch}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+@media (max-width:782px){.cols2{grid-template-columns:1fr}}
+ul.plain{padding-left:20px}
+ul.plain li{margin-bottom:10px;max-width:68ch}
+.res{list-style:none;padding:0;margin:0 0 24px}
+.res li{padding:14px 0;border-bottom:1px solid var(--line);max-width:80ch}
+.res a{font-weight:600;font-family:Poppins,sans-serif;font-size:16px;color:var(--head);text-decoration:none}
+.res a:hover{color:var(--link);text-decoration:underline}
+.res span{display:block;color:var(--muted);font-size:16px;margin-top:3px}
+.post{background:var(--surface);border-radius:12px;padding:28px 30px;max-width:78ch;margin-top:16px}
+.post .date{color:var(--muted);font-size:15px;margin-bottom:10px}
+.post h3{color:var(--head);font-size:22px}
+footer{background:var(--navy);color:#C9CBDD;padding:32px 0;font-size:15px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+footer a{color:#fff;text-decoration:none;margin-right:18px;font-family:Poppins,sans-serif;font-size:14px}
+footer a:hover{text-decoration:underline}
+.sub{color:var(--muted);font-size:15px}
+.callout{background:var(--surface);border-radius:12px;padding:22px 26px;margin:8px 0 20px;max-width:78ch}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="brand" href="#home">
+      <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M4 30 Q20 6 36 30" stroke="#FF9933" stroke-width="5" fill="none" stroke-linecap="round"/><rect x="2" y="29" width="10" height="7" rx="2" fill="#fff"/><rect x="28" y="29" width="10" height="7" rx="2" fill="#fff"/></svg>
+      ShikayatSetu
+    </a>
+    <button class="burger" aria-label="Open menu" onclick="document.getElementById('nav').classList.toggle('open')">Menu</button>
+    <nav id="nav" aria-label="Primary">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#problem">The Problem</a></li>
+        <li><a href="#case">Case Study</a></li>
+        <li><a href="#resources">Resources</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HOME ================= -->
+<main>
+<article class="page" id="page-home">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">A capstone project on digital media and small business</div>
+        <h1>Turn complaints into conversations.</h1>
+        <p>ShikayatSetu is a digital media tool for small businesses that sell through Facebook. It spots customer complaints in your comments, reviews and messages, flags them before they spread, and gives you a ready-to-send first reply that moves the conversation somewhere private.</p>
+        <div class="btns"><a class="btn primary" href="#problem">See how it works</a><a class="btn ghost" href="#case">Read the case study</a></div>
+      </div>
+      <div class="photo" aria-label="Illustration: a phone showing a flagged customer complaint with a suggested reply">
+        <svg viewBox="0 0 480 360" role="img"><title>A phone showing a flagged complaint and a one-tap reply</title>
+          <rect width="480" height="360" fill="#2A2F58"/>
+          <circle cx="400" cy="70" r="90" fill="#FF9933" opacity=".18"/>
+          <rect x="150" y="30" width="180" height="320" rx="24" fill="#0F1226" stroke="#FF9933" stroke-width="3"/>
+          <rect x="165" y="50" width="150" height="280" rx="14" fill="#FAF9F6"/>
+          <rect x="165" y="50" width="150" height="34" rx="14" fill="#1B1F3B"/>
+          <text x="240" y="73" fill="#fff" font-family="Poppins,Arial" font-size="12" text-anchor="middle" font-weight="600">Sharma Sarees Page</text>
+          <rect x="176" y="96" width="128" height="58" rx="8" fill="#FDE8E9" stroke="#C1272D"/>
+          <circle cx="190" cy="112" r="6" fill="#C1272D"/>
+          <text x="202" y="116" fill="#C1272D" font-family="Poppins,Arial" font-size="9" font-weight="600">FLAGGED · public comment</text>
+          <text x="182" y="132" fill="#1F2430" font-family="Arial" font-size="9">"Order nahi aaya, 6 din ho gaye."</text>
+          <text x="182" y="145" fill="#1F2430" font-family="Arial" font-size="9">"Refund chahiye. Fraud hai kya?"</text>
+          <rect x="176" y="166" width="128" height="86" rx="8" fill="#FFF3E3" stroke="#FF9933"/>
+          <text x="182" y="182" fill="#8A3E00" font-family="Poppins,Arial" font-size="9" font-weight="600">Suggested reply</text>
+          <text x="182" y="197" fill="#1F2430" font-family="Arial" font-size="8.5">Sorry Priya ji, this should not</text>
+          <text x="182" y="209" fill="#1F2430" font-family="Arial" font-size="8.5">have happened. I am checking</text>
+          <text x="182" y="221" fill="#1F2430" font-family="Arial" font-size="8.5">now. Please message me</text>
+          <text x="182" y="233" fill="#1F2430" font-family="Arial" font-size="8.5">privately and I will fix it today.</text>
+          <rect x="176" y="264" width="128" height="30" rx="8" fill="#FF9933"/>
+          <text x="240" y="284" fill="#1B1F3B" font-family="Poppins,Arial" font-size="11" text-anchor="middle" font-weight="600">Send reply</text>
+          <text x="240" y="316" fill="#5B6070" font-family="Arial" font-size="8.5" text-anchor="middle">Edit before sending</text>
+          <path d="M20 300 Q70 240 130 290" stroke="#FF9933" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="8 8"/>
+          <text x="22" y="330" fill="#fff" font-family="Poppins,Arial" font-size="12">private, not public</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>What this site is for</h2>
+      <p>This website is the public face of my Capstone Project for the Master of Arts in Digital Media and Global Communication. It has one purpose: to explain, in plain language, why customer complaints escalate on social media and how a well-designed digital tool can help the smallest businesses answer them well.</p>
+      <p>If you run a shop, a home bakery, a tuition centre or a boutique through a Facebook Page, this site was written for you. If you are a classmate or instructor, it also shows my capstone thinking in a form anyone can read.</p>
+      <div class="grid3" style="margin-top:28px">
+        <div class="feature">
+          <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><circle cx="19" cy="19" r="12" stroke="#1B1F3B" stroke-width="4" fill="none"/><path d="M28 28 L40 40" stroke="#FF9933" stroke-width="5" stroke-linecap="round"/></svg>
+          <h3>Scan</h3><p>ShikayatSetu reads new comments, reviews and Messenger threads on your Page and looks for complaint language in English, Hindi and Hinglish.</p>
+        </div>
+        <div class="feature">
+          <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><path d="M10 6 V40" stroke="#1B1F3B" stroke-width="4" stroke-linecap="round"/><path d="M12 8 H36 L30 16 L36 24 H12 Z" fill="#C1272D"/></svg>
+          <h3>Flag</h3><p>Anything that looks like a complaint is sorted by urgency and sent to you as one short notification, so nothing sits unanswered for a day.</p>
+        </div>
+        <div class="feature">
+          <svg class="ico" viewBox="0 0 44 44" aria-hidden="true"><path d="M6 8 H38 V30 H18 L8 38 V30 H6 Z" fill="#FF9933"/><path d="M14 16 H30 M14 22 H26" stroke="#1B1F3B" stroke-width="3" stroke-linecap="round"/></svg>
+          <h3>Reply</h3><p>You get a first reply you can send in one tap. It acknowledges the problem in public and invites the customer into a private message to fix it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><b>73%</b><span>of social media users say if a brand does not respond on social, they will buy from a competitor.</span><small>Sprout Social, 2025</small></div>
+      <div class="stat"><b>3 in 4</b><span>consumers expect a brand to reply within 24 hours or sooner.</span><small>Sprout Social, 2025</small></div>
+      <div class="stat"><b>400M+</b><span>people in India use Facebook, the largest national audience of any country.</span><small>Statista, 2025</small></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap two">
+      <div>
+        <h2 style="margin-top:0">Built on a tool you already have</h2>
+        <p>Most of what ShikayatSetu does is already possible by hand inside Meta Business Suite, the free dashboard Facebook gives every Page. The problem is that few small sellers know it exists, and fewer have time to check it. The short video shows the Business Suite inbox that ShikayatSetu is built on top of.</p>
+      </div>
+      <a class="video" href="https://www.youtube.com/watch?v=wl77SLuOeQk" target="_blank" rel="noopener">
+        <div><div class="play"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 L19 12 L8 19 Z" fill="#1B1F3B"/></svg></div>
+        <strong>How to use the Meta Business Suite Inbox</strong><br><small>Beginner tutorial on YouTube (opens in a new tab; embedded on the live WordPress site)</small></div>
+      </a>
+    </div>
+  </section>
+  <div class="wrap next"><a class="btn navy" href="#about">Who is behind this site?</a></div>
+</article>
+
+<!-- ================= ABOUT ================= -->
+<article class="page" id="page-about">
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">About</div>
+      <h1>About Neha and this site</h1>
+      <div class="about">
+        <div class="photo" aria-label="Portrait placeholder">
+          <svg viewBox="0 0 300 300" role="img"><title>Portrait placeholder for Neha Srivastava</title><rect width="300" height="300" fill="#F0E6D6"/><circle cx="150" cy="115" r="58" fill="#1B1F3B"/><path d="M50 300 Q150 180 250 300 Z" fill="#1B1F3B"/><rect x="0" y="252" width="300" height="48" fill="#FF9933"/><text x="150" y="282" text-anchor="middle" font-family="Poppins,Arial" font-size="15" font-weight="600" fill="#1B1F3B">Neha Srivastava</text></svg>
+        </div>
+        <div>
+          <p>I am Neha Srivastava, a graduate student in the Master of Arts in Digital Media and Global Communication program. Before this degree I worked in communication and client-facing roles, and the moment that shaped this project was a familiar one: watching a small business owner discover, hours too late, that an unhappy customer had posted a screenshot of their chat and hundreds of people had already shared it. The business had done nothing malicious. It had simply not seen the message in time, and had no idea what to say when it did.</p>
+          <p>My capstone, ShikayatSetu, grew out of that moment. It asks a simple question: what would a digital media tool look like if it were designed for the smallest sellers, the ones with no communication team, who run their entire storefront through a Facebook Page and a phone? "Shikayat" means complaint in Hindi, and "setu" means bridge.</p>
+        </div>
+      </div>
+
+      <h2>Objectives of this site</h2>
+      <div class="objs">
+        <div class="obj"><b>Explain the problem clearly.</b><p>Complaint escalation on social media is usually described in the language of big-brand crisis management. I want to describe it for a shop owner in Jaipur or a home baker in Kochi, in words they would use themselves.</p></div>
+        <div class="obj"><b>Show the evidence.</b><p>Every claim on this site is tied to a published source, whether that is a peer-reviewed study on "webcare", an industry survey on consumer expectations, or news coverage of a real case. The Resources page collects all of it in one place.</p></div>
+        <div class="obj"><b>Demonstrate good design.</b><p>The site itself is an exercise in the principles from this course: a clear hierarchy, consistent colour and typography, generous white space, and a layout that works equally well on a phone, because that is where my audience lives.</p></div>
+      </div>
+
+      <h2>How this site was built</h2>
+      <p>The site runs on WordPress.com using a block theme, with a five-page structure and a single shared navigation menu. Colours are navy for structure, saffron for emphasis and warmth, and an off-white background for readability. Headings are set in Poppins and body text in Source Sans 3, both free Google Fonts. Images are sourced from Unsplash and Pexels under their free licences, with credit given on the Resources page.</p>
+    </div>
+  </section>
+  <div class="wrap next"><a class="btn navy" href="#problem">Next: Why complaints escalate</a></div>
+</article>
+
+<!-- ================= CONTENT 1 ================= -->
+<article class="page" id="page-problem">
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">The problem</div>
+      <h1>Why complaints escalate online, and what a small business can do about it</h1>
+      <p>A complaint on social media is not a single event. It is a ladder, and every rung a business fails to answer pushes the customer up to the next one. The same disappointed customer who would have accepted a quiet refund at 10 a.m. is, by 4 p.m., the author of a screenshot that strangers are sharing with the caption "never buying from here again". This page explains how that ladder works, what the research says about stopping the climb, and how my capstone tool is designed to help.</p>
+
+      <h2>The escalation ladder</h2>
+      <div class="ladder">
+        <svg viewBox="0 0 900 300" role="img"><title>The four rungs of a social media complaint: private message, public comment, screenshot, reshare</title>
+          <defs><marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#C1272D"/></marker></defs>
+          <g font-family="Poppins,Arial" font-weight="600">
+            <rect x="20" y="220" width="200" height="60" rx="8" fill="#FFF3E3" stroke="#FF9933" stroke-width="2"/>
+            <text x="120" y="245" text-anchor="middle" font-size="16" fill="#1B1F3B">1. Private message</text>
+            <text x="120" y="266" text-anchor="middle" font-size="12" fill="#5B6070" font-weight="400">only you can see it</text>
+            <rect x="240" y="160" width="200" height="60" rx="8" fill="#FFE6CC" stroke="#FF9933" stroke-width="2"/>
+            <text x="340" y="185" text-anchor="middle" font-size="16" fill="#1B1F3B">2. Public comment</text>
+            <text x="340" y="206" text-anchor="middle" font-size="12" fill="#5B6070" font-weight="400">every visitor sees it</text>
+            <rect x="460" y="100" width="200" height="60" rx="8" fill="#FBD5D7" stroke="#C1272D" stroke-width="2"/>
+            <text x="560" y="125" text-anchor="middle" font-size="16" fill="#1B1F3B">3. Screenshot</text>
+            <text x="560" y="146" text-anchor="middle" font-size="12" fill="#5B6070" font-weight="400">context is lost</text>
+            <rect x="680" y="40" width="200" height="60" rx="8" fill="#C1272D"/>
+            <text x="780" y="65" text-anchor="middle" font-size="16" fill="#fff">4. Reshare and remix</text>
+            <text x="780" y="86" text-anchor="middle" font-size="12" fill="#FDE8E9" font-weight="400">spreads like a meme</text>
+          </g>
+          <path d="M220 235 L240 205" stroke="#C1272D" stroke-width="3" marker-end="url(#arr)"/>
+          <path d="M440 175 L460 145" stroke="#C1272D" stroke-width="3" marker-end="url(#arr)"/>
+          <path d="M660 115 L680 85" stroke="#C1272D" stroke-width="3" marker-end="url(#arr)"/>
+          <text x="20" y="30" font-family="'Source Sans 3',Arial" font-size="14" fill="#5B6070" font-style="italic">Each unanswered hour pushes the customer up one rung. ShikayatSetu is designed to stop the climb at rung one or two.</text>
+        </svg>
+      </div>
+      <ul class="plain">
+        <li><b>Private message.</b> The customer writes to the Page or to the seller's WhatsApp. At this stage nobody else can see the problem. This is the cheapest moment to fix it, and the one most small sellers miss because the message arrives while they are serving a customer in the shop.</li>
+        <li><b>Public comment or review.</b> No reply comes, so the customer posts under the seller's latest product photo or leaves a one-star review. Now every future visitor to the Page can see it.</li>
+        <li><b>Screenshot.</b> The customer, or a friend, screenshots the unanswered comment or an unhelpful reply and posts it to their own profile, a WhatsApp group or a community page. The seller has lost control of the context.</li>
+        <li><b>Reshare and remix.</b> The screenshot travels the way a meme travels: reposted, captioned, sometimes turned into a joke. Research on Indian meme culture and on the spread of false or partial information across Facebook and WhatsApp shows how fast this stage can move once it begins (Adiga and Padmakumar, 2025; Al-Zaman, 2021).</li>
+      </ul>
+
+      <h2>What the research says</h2>
+      <p>Researchers call the practice of a business answering customers in public online spaces <b>webcare</b>. Three findings from that literature shaped this project.</p>
+      <div class="scroll"><table>
+        <thead><tr><th style="width:38%">Finding</th><th style="width:40%">What it means for a small seller</th><th>Source</th></tr></thead>
+        <tbody>
+          <tr><td>Consumers expect a fast reply, and punish silence. Nearly three-quarters expect a response within 24 hours, and 73% say they will buy from a competitor if a brand does not respond.</td><td>Speed matters more than polish. A short, human acknowledgement inside a few hours beats a perfect reply the next day.</td><td>Sprout Social (2025)</td></tr>
+          <tr><td>Not all complainants are the same. Committed customers who complain want to be heard and will stay if treated well; a smaller group wants public revenge and reacts badly to defensive replies.</td><td>The first reply should be calm and non-defensive, because it is read by both groups and by everyone watching.</td><td>Weitzl and Einwiller (2020)</td></tr>
+          <tr><td>Small sellers in India are online; what they lack is time and confidence with digital tools, not access. Many run their whole storefront through a Facebook Page or Group.</td><td>The tool must do the work for them: notice the complaint, draft the reply, and ask for one tap. Anything that needs training will not be used.</td><td>Sindakis and Showkat (2024); Srivastava (2023)</td></tr>
+        </tbody>
+      </table></div>
+
+      <h2>How ShikayatSetu works</h2>
+      <p>ShikayatSetu sits on top of the free Meta Business Suite that every Facebook Page already has. Meta already offers an inbox that pulls together comments, reviews and Messenger threads, and automated responses such as instant replies and away messages (Meta, 2026). What it does not do is tell a busy seller which of the forty new notifications is the one that will hurt them tomorrow. That is the gap ShikayatSetu fills.</p>
+      <div class="grid3">
+        <div class="feature"><h3>1. Scan</h3><p>Every new comment, review and message is read for complaint signals: words like "refund", "kharab", "fraud", "not delivered", a one- or two-star rating, or an angry tone. Works in English, Hindi and Hinglish. Nothing is posted automatically.</p></div>
+        <div class="feature"><h3>2. Flag</h3><p>Complaints are ranked by urgency (public and visible first, private second) and sent as one short notification with a two-line summary. One notification instead of forty.</p></div>
+        <div class="feature"><h3>3. Reply</h3><p>The seller sees a suggested first reply: an apology, a promise to fix it, and an invitation to continue by private message. One tap sends it, and every onlooker sees that the seller responds.</p></div>
+      </div>
+
+      <h2>Where this is going: emerging technologies and the future of customer conversations</h2>
+      <p>The version of ShikayatSetu described above uses simple keyword and rating rules, because they are cheap, transparent and easy to explain to a seller. The next versions will not stay that simple, and the course modules on emerging technologies and the future of digital media point to three changes worth planning for now.</p>
+      <h3>Generative AI drafts, human sends</h3>
+      <p>Large language models can already draft a polite, context-aware reply in the customer's own language and register. Consumer research suggests people are open to this: three-quarters of consumers who have used generative AI expect it to change their customer service experience, yet 68% also expect a bot to be as expert as a skilled human agent (Zendesk, 2025). For a small seller the right balance is "AI drafts, human sends". The seller reads a suggested reply, edits a word or two, and taps. The customer always gets a human decision, and the seller never sends something they have not seen.</p>
+      <h3>Conversations move to messaging apps</h3>
+      <p>In India the customer relationship increasingly lives on WhatsApp rather than on the Page itself, and Meta continues to add Indian languages to its creator and business tools (News on Air, 2025). A future ShikayatSetu has to watch WhatsApp Business and Instagram alongside Facebook, because the complaint will come from whichever app the customer opened last.</p>
+      <h3>Trust, transparency and the digital divide</h3>
+      <p>Automation can widen the gap between businesses that can afford it and those that cannot. Keeping ShikayatSetu free at the base tier, keeping the rules visible ("this was flagged because it contains the word refund and a one-star rating"), and never letting the tool speak for the seller without permission are design decisions, not afterthoughts. The future of digital media for small businesses will be decided less by what the technology can do than by whether the people it is meant for trust it enough to use it.</p>
+    </div>
+  </section>
+  <div class="wrap next"><a class="btn navy" href="#case">Next: A real case, Zomato in 2021</a></div>
+</article>
+
+<!-- ================= CASE STUDY ================= -->
+<article class="page" id="page-case">
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Case study</div>
+      <h1>How one support chat became a national story (Zomato, October 2021)</h1>
+      <div class="callout"><p style="margin:0">On 18 and 19 October 2021 a routine refund request to the food delivery company Zomato turned into the trending hashtags #RejectZomato and #StopHindiImposition, a statement from a Member of Parliament, a public apology, the sacking of a support agent, and then her reinstatement, all inside roughly twenty-four hours. Zomato is a large company with a professional communication team, which is exactly why the case is useful: the escalation ladder does not care how big you are. It only cares how you answer.</p></div>
+
+      <div class="cols2">
+        <div>
+          <h2 style="margin-top:0">Timeline</h2>
+          <ul class="timeline">
+            <li><b>The complaint</b><span class="rung">Rung 1: private message</span><p>A customer in Tamil Nadu, Vikash, contacted Zomato's chat support about an order with a missing item and asked for a refund.</p></li>
+            <li><b>The reply</b><span class="rung">Still private, but the grievance is created</span><p>The agent said there was a "language barrier" with the restaurant, then wrote that "Hindi is our national language, so it is very common that everybody should know Hindi little bit", and declined the refund.</p></li>
+            <li><b>The screenshot</b><span class="rung">Rungs 3 and 4: screenshot, reshare</span><p>The customer posted screenshots on Twitter. Within hours #RejectZomato and #StopHindiImposition were trending nationally, and DMK MP Kanimozhi criticised the company (The News Minute, 2021).</p></li>
+            <li><b>The first response</b><span class="rung">Public response</span><p>Zomato apologised, said the agent's behaviour "was clearly against the principles of sensitivity", terminated the agent, and announced a Tamil version of the app and a Tamil support centre in Coimbatore (India TV News, 2021).</p></li>
+            <li><b>The reversal</b><span class="rung">Second public response</span><p>Later on 19 October co-founder Deepinder Goyal tweeted that "an ignorant mistake by someone in a support centre of a food delivery company became a national issue", that the agent had been reinstated, and that "the level of tolerance and chill in our country needs to be way higher" (Deccan Herald, 2021).</p></li>
+          </ul>
+        </div>
+        <div>
+          <div class="photo" style="margin-bottom:24px" aria-label="Illustration: a screenshot of a chat spreading across social media">
+            <svg viewBox="0 0 480 300" role="img"><title>A chat screenshot being reshared many times</title>
+              <rect width="480" height="300" fill="#1B1F3B"/>
+              <g transform="translate(40 40)"><rect width="150" height="200" rx="10" fill="#FAF9F6"/><rect x="12" y="16" width="90" height="18" rx="9" fill="#E8E9F0"/><rect x="48" y="44" width="90" height="18" rx="9" fill="#C1272D"/><rect x="12" y="72" width="100" height="18" rx="9" fill="#E8E9F0"/><rect x="40" y="100" width="98" height="30" rx="9" fill="#C1272D"/><text x="75" y="170" text-anchor="middle" font-family="Poppins,Arial" font-size="11" fill="#5B6070">10:14 a.m.</text></g>
+              <g stroke="#FF9933" stroke-width="2" fill="none"><path d="M195 140 Q260 60 320 70"/><path d="M195 140 Q260 140 320 150"/><path d="M195 140 Q260 220 320 230"/><path d="M340 70 Q380 40 420 60"/><path d="M340 70 Q380 100 420 110"/><path d="M340 150 Q380 130 420 160"/><path d="M340 230 Q380 210 420 200"/><path d="M340 230 Q380 260 420 250"/></g>
+              <g fill="#FAF9F6"><rect x="320" y="58" width="22" height="26" rx="3"/><rect x="320" y="138" width="22" height="26" rx="3"/><rect x="320" y="218" width="22" height="26" rx="3"/><rect x="420" y="48" width="18" height="22" rx="3"/><rect x="420" y="98" width="18" height="22" rx="3"/><rect x="420" y="148" width="18" height="22" rx="3"/><rect x="420" y="188" width="18" height="22" rx="3"/><rect x="420" y="238" width="18" height="22" rx="3"/></g>
+              <text x="240" y="285" text-anchor="middle" font-family="Poppins,Arial" font-size="13" fill="#FF9933" font-weight="600">One screenshot. Thousands of reshares by 4 p.m.</text>
+            </svg>
+          </div>
+          <h2 style="margin-top:0">What went wrong</h2>
+          <ul class="plain">
+            <li><b>The problem was created at the private stage.</b> The customer did not go public because of a missing item. He went public because of what the agent said about language. The most expensive mistakes on the ladder happen in the first reply.</li>
+            <li><b>The agent had no script for a sensitive moment.</b> Language is a cultural fault line in India. A prepared, neutral response ("I am sorry, let me sort out the refund") would have ended the conversation in one line.</li>
+            <li><b>Two responses in one day sent mixed signals.</b> Firing the agent and then reinstating her, with the founder describing the public reaction as a lack of "chill", gave critics a second story to share.</li>
+          </ul>
+          <h2>What went right</h2>
+          <ul class="plain">
+            <li><b>Speed.</b> Zomato responded publicly within hours, not days, consistent with what consumers say they expect (Sprout Social, 2025).</li>
+            <li><b>A concrete promise.</b> A Tamil app and a Tamil support centre answered the underlying grievance, not only the incident.</li>
+            <li><b>Human tone.</b> The founder spoke as a person, not through a legal statement, and the story faded within days.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>What ShikayatSetu would have changed</h2>
+      <p>ShikayatSetu is built for a shop with one owner, not a company with thousands of agents, but the mechanism is the same. In a small business the "agent" is the owner or a family member replying between customers, tired, and without training. The tool would have flagged the incoming refund request as a complaint, offered a first reply that apologised and committed to a fix, and kept the exchange private. Nothing in that reply would have mentioned language. The screenshot that travelled around the country would never have existed, because there would have been nothing in it worth sharing.</p>
+      <h2>What comes next: the same case in 2026</h2>
+      <p>Run the same scenario five years later and the technology has moved. An AI-assisted inbox would have drafted the agent's reply and quietly refused to generate the sentence about the national language; a sentiment model would have flagged the thread as high risk the moment the customer's tone shifted; and the customer would more likely have complained on WhatsApp or Instagram than on Twitter. The lesson of the case does not change with the tools, though. The technology can catch the moment, but a person still decides what to say, and the businesses that will do well in the next decade of digital media are the ones that treat that decision as the product itself.</p>
+    </div>
+  </section>
+  <div class="wrap next"><a class="btn navy" href="#resources">Next: Resources and reading list</a></div>
+</article>
+
+<!-- ================= RESOURCES ================= -->
+<article class="page" id="page-resources">
+  <section>
+    <div class="wrap">
+      <div class="eyebrow">Blog and resources</div>
+      <h1>A curated reading list on complaints, conversations and small business</h1>
+      <h2 style="margin-top:0">How this list was curated</h2>
+      <p>Digital curation is not collecting links. It is, in Beth Kanter's definition, "sifting through information on the web and organizing, filtering and making sense of it and sharing the very best content with your network" (Kanter, 2011). I used the seek, sense, share model she borrows from Harold Jarche: I sought widely across academic databases, industry research, platform documentation and news; I made sense of each item by asking what it tells a small seller that they could act on; and I share only the items that passed that test, each with one line explaining why it is here. Sources are grouped by what you want to do with them, not by type.</p>
+      <p class="sub">Last updated: September 2026.</p>
+
+      <div class="cols2">
+        <div>
+          <h2>Understand the problem</h2>
+          <ul class="res">
+            <li><a href="https://doi.org/10.1016/j.jbusres.2019.05.035" target="_blank" rel="noopener">Weitzl and Einwiller (2020), Profiling (un-)committed online complainants</a><span>Journal of Business Research. The clearest evidence that the tone of a public reply matters because different kinds of complainers read it differently.</span></li>
+            <li><a href="https://doi.org/10.1186/s13731-024-00380-w" target="_blank" rel="noopener">Sindakis and Showkat (2024), The digital revolution in India</a><span>Journal of Innovation and Entrepreneurship. Why time and confidence, not access, are the real barriers for small sellers. This shaped the one-tap design.</span></li>
+            <li><a href="https://doi.org/10.32628/IJSRST5231059" target="_blank" rel="noopener">Srivastava (2023), Investigating the impact of Facebook on small-scale businesses in India</a><span>IJSRST. Describes the exact audience this site is written for.</span></li>
+            <li><a href="https://doi.org/10.15206/ajpor.2021.9.1.25" target="_blank" rel="noopener">Al-Zaman (2021), Social media fake news in India</a><span>Asian Journal for Public Opinion Research. The best short account of how content spreads across Facebook, WhatsApp and Twitter in India.</span></li>
+          </ul>
+          <h2>Know what customers expect</h2>
+          <ul class="res">
+            <li><a href="https://sproutsocial.com/insights/social-media-customer-service-statistics/" target="_blank" rel="noopener">Sprout Social, Social media customer service statistics (2025)</a><span>The 24-hour expectation and the 73% competitor figure used on the Home page. Updated regularly, so check the date.</span></li>
+            <li><a href="https://www.zendesk.com/blog/ai/productivity/ai-customer-service-statistics/" target="_blank" rel="noopener">Zendesk, AI customer service statistics (2025)</a><span>Survey figures on how consumers feel about AI in support. Industry source, so read it as a vendor's view.</span></li>
+            <li><a href="https://www.statista.com/statistics/268136/top-15-countries-based-on-number-of-facebook-users/" target="_blank" rel="noopener">Statista, Facebook users by country (2025)</a><span>Confirms India as the largest Facebook audience in the world.</span></li>
+          </ul>
+        </div>
+        <div>
+          <h2>Use the free tools you already have</h2>
+          <ul class="res">
+            <li><a href="https://www.facebook.com/business/help/395965998733706" target="_blank" rel="noopener">Meta: About Automated Responses in Meta Business Suite Inbox</a><span>The official page on instant replies, away messages and saved replies, which ShikayatSetu builds on.</span></li>
+            <li><a href="https://www.messenger.com/help/messenger-app/294426838452244/" target="_blank" rel="noopener">Messenger Help Centre: About Inbox in Meta Business Suite</a><span>How the unified inbox pulls Facebook, Instagram and Messenger together.</span></li>
+            <li><a href="https://www.youtube.com/watch?v=wl77SLuOeQk" target="_blank" rel="noopener">Video: How To Use The Meta Business Suite Inbox</a><span>A beginner walkthrough of the inbox, embedded on the Home page.</span></li>
+          </ul>
+          <h2>Learn from real cases</h2>
+          <ul class="res">
+            <li><a href="https://www.thenewsminute.com/article/zomato-employee-told-tn-customer-everyone-should-know-little-hindi-156665" target="_blank" rel="noopener">The News Minute (2021), Zomato responds after employee tells TN customer "everyone should know little Hindi"</a><span>The most complete contemporaneous account of the case study.</span></li>
+            <li><a href="https://www.deccanherald.com/india/hindi-tamil-row-zomato-reinstates-employee-it-sacked-founder-bats-for-higher-tolerance-and-chill-1042065.html" target="_blank" rel="noopener">Deccan Herald (2021), Zomato reinstates employee it sacked</a><span>Covers the founder's reversal and tweets.</span></li>
+            <li><a href="https://store.hbr.org/product/zomato-an-ignorant-customer-communication-mistake-or-a-national-issue/W29862" target="_blank" rel="noopener">Ivey Publishing, Zomato: An Ignorant Customer Communication Mistake or a National Issue?</a><span>A business school teaching case built on the same incident.</span></li>
+          </ul>
+          <h2>Think about curation itself</h2>
+          <ul class="res">
+            <li><a href="https://bethkanter.org/content-curation-2/" target="_blank" rel="noopener">Beth Kanter, How Nonprofits Get Significant Value from Content Curation</a><span>The definition and the seek, sense, share model used to build this page.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h2>From the blog</h2>
+      <div class="post">
+        <div class="date">September 2026</div>
+        <h3>What I learned building a five-page site about complaints</h3>
+        <p>I expected the hard part of this lab to be WordPress. It was not. The hard part was deciding what to leave out. My first draft of The Problem page had eleven sources and four diagrams, and when I opened it on my phone I scrolled for a full minute before reaching the section that explains what ShikayatSetu actually does. Everything on that page was true. Almost none of it was necessary.</p>
+        <p>Three decisions followed. First, every page got one job, stated in its first sentence, and anything that did not serve that job moved to this page or was cut. Second, I stopped treating this page as a bibliography and started treating it as an act of curation: fewer items, each with a reason to be there, grouped by what a reader wants to do. Third, I checked every page on a phone before I checked it on a laptop, because the small sellers this project is for will never see it on a laptop.</p>
+        <p style="margin:0">The last thing I learned is about the case study. I chose Zomato because it is well documented, but the more I read the more I saw my own audience in it. The agent who wrote that sentence about Hindi was not a villain; she was someone answering too many chats with no script for a sensitive moment. That is every small business owner at 9 p.m. with a phone full of notifications. The tool I am building is, in the end, a script for that moment.</p>
+      </div>
+      <p class="sub" style="margin-top:24px">Image credits: illustrations and diagrams by Neha Srivastava. Photographs on the live site are from Unsplash and Pexels under their free licences.</p>
+    </div>
+  </section>
+  <div class="wrap next"><a class="btn navy" href="#home">Back to Home</a></div>
+</article>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><a href="#home">Home</a><a href="#about">About</a><a href="#problem">The Problem</a><a href="#case">Case Study</a><a href="#resources">Resources</a></div>
+    <div>© 2026 Neha Srivastava. Built for the MA in Digital Media and Global Communication.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ids=['home','about','problem','case','resources'];
+  function show(){
+    var h=(location.hash||'#home').slice(1);
+    if(ids.indexOf(h)<0)h='home';
+    ids.forEach(function(id){
+      document.getElementById('page-'+id).classList.toggle('active',id===h);
+    });
+    document.querySelectorAll('nav a').forEach(function(a){
+      if(a.getAttribute('href')==='#'+h)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+    });
+    document.getElementById('nav').classList.remove('open');
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',show);
+  show();
+})();
+</script>
+
+</body>
+</html>
